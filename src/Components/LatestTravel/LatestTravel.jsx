@@ -1,13 +1,33 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './travel.css'
+import { Data } from '../CreateContext/contextdata'
+import { Link } from 'react-router-dom'
 
-const LatestTravel = (props) => {
+const LatestTravel = () => {
+  const data= useContext(Data)
+  console.log(data)
   return (
-    <div className='travel'>
-      <img className='tarvelimg' src={props.img} alt="" />
-      <h3>{props.heading}</h3>
-      <p className='travelpara'>{props.para}</p>
-    </div>
+
+    <div className='latesttravel'>
+      {
+        data.map((index,value)=>{
+          if(index.catagory==='travel'){
+            return (
+            <Link key={value} state={index} to='/latesttravel'>
+            <div  className='travel'>
+              <img className='tarvelimg' src={index.img} alt="" />
+              <h3>{index.name}</h3>
+              <p className='travelpara'>{index.para}</p>
+            </div>
+            </Link>
+            )
+          }
+         
+        })
+      }
+   
+   </div>
+   
   )
 }
 
