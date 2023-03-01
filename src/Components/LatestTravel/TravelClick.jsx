@@ -3,30 +3,43 @@ import { useLocation } from 'react-router-dom'
 import './TravelClick.css'
 import { Data } from '../CreateContext/contextdata'
 import { Link } from 'react-router-dom'
-import LatestFit from '../LatestFitness/LatestFit'
+
 
 
 const TravelClick = () => {
   const location=useLocation()
+  console.log(location)
   const data=useContext(Data)
-  const img=location.state.img
-  const name=location.state.name
-  const imdb=location.state.para
   return (
-    <div>
+    <div className='home'>
       <div className='singletravel'>
-        <img className='singletrvelimg' src={img} alt="" />
-        <h1 className='singletravelhead'>{name}</h1>
-        <p className='singletravelpara'>{imdb}</p>
+        <img className='singletrvelimg' src={location.state.img} alt="" />
+        <h1 className='singletravelhead'>{location.state.name}</h1>
+        <p className='singletravelpara'>{location.state.para}</p>
     </div>
-    <h1 style={{textAlign:'center'}}>Anime</h1>
-      <div className='fitnesscon'>
-      <Link state={data.fitness.post1} to='/latesttravel'><LatestFit img={data.fitness.post1.img} name={data.fitness.post1.name} para={data.fitness.post1.para} /></Link>
-        <Link state={data.fitness.post2} to='/latesttravel'><LatestFit img={data.fitness.post2.img} name={data.fitness.post2.name} para={data.fitness.post2.para} /></Link>
-        <Link state={data.fitness.post3} to='/latesttravel'><LatestFit img={data.fitness.post3.img} name={data.fitness.post3.name} para={data.fitness.post3.para} /></Link>
+    <div>
+      <h1 style={{textAlign:'center'}}>Related Posts <hr /></h1>
+      <div className='hometechno'>
+      {
+        data.map((index,value)=>{
+          if(index.catagory===location.state.catagory && location.state.id!==index.id){
+            return(
+              <Link state={index} to='/latesttravel'>
+              <div key={value} className='travel'>
+                <img className='tarvelimg' src={index.img} alt="" />
+                <h3>{index.name}</h3>
+                <p className='travelpara'>{index.para}</p>
+              </div>
+              </Link>
+            )
+          }
+        })
+      }
+      </div>
     </div>
     </div>
     
+   
   )
 }
 

@@ -21,7 +21,8 @@
     transition: all linear 0.3s;
 }
 .tarvelimg{
-    height: 198px;
+    height: 50%;
+    width: fit-content;
     border-radius: 10px;
 }
 .travelpara{

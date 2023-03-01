@@ -31,6 +31,7 @@
     /* background-color: blue; */
 }
 .box2{
+    text-align: center;
     background-image: linear-gradient(
         aqua,
         green,
@@ -41,7 +42,9 @@
     border: 2px solid black;
 }
 .hometechno{
+    margin-bottom: 50px;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
 }
 
